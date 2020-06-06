@@ -70,7 +70,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout()
                 .deleteCookies("JESSSIONID")
                 .invalidateHttpSession(true)
-                .logoutSuccessHandler(successLogoutHandler);
+                .logoutSuccessHandler(successLogoutHandler)
+                .and()
+                .oauth2Login();
     }
     
 }
