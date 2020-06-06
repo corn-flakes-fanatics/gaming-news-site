@@ -26,7 +26,6 @@
 		<maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
 		<slf4j-log4j12.version>1.7.30</slf4j-log4j12.version>
 		<jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
-		<!--<spring-security-oauth2-autoconfigure.version>2.3.0.RELEASE</spring-security-oauth2-autoconfigure.version>-->
 
 	</properties>
 
@@ -49,11 +48,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-client</artifactId>
 		</dependency>
-		<!--<dependency>
-			<groupId>org.springframework.security.oauth.boot</groupId>
-			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
-			<version>${spring-security-oauth2-autoconfigure.version}</version>
-		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
