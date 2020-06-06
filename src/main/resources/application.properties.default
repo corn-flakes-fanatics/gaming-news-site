@@ -1,6 +1,10 @@
-spring.data.mongodb.database=MongoDatabaseName
+spring.data.mongodb.database=ggs
 spring.data.mongodb.host=localhost
 spring.data.mongodb.port=27017
+
+
+spring.security.oauth2.client.registration.google.client-id=
+spring.security.oauth2.client.registration.google.client-secret=
 
 #####################################
 
