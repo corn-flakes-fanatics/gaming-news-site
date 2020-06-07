@@ -1,5 +1,6 @@
 package corn.flakes.fanatics.ggs.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +17,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class RoleModel {
     
     @Id
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String id;
     
     @Indexed(unique = true)

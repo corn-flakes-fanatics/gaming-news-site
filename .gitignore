@@ -2,7 +2,8 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
-*.properties
+application.properties
+log4j.properties
 *.log
 
 ### IntelliJ IDEA ###
