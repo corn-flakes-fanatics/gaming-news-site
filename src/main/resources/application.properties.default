@@ -5,3 +5,11 @@ spring.data.mongodb.port=27017
 
 spring.security.oauth2.client.registration.google.client-id=asd
 spring.security.oauth2.client.registration.google.client-secret=asd
+
+spring.mail.protocol=smtp
+spring.mail.host=localhost
+spring.mail.port=25
+spring.mail.properties.mail.smtp.auth=false
+spring.mail.properties.mail.smtp.starttls.enable=false
+spring.mail.properties.mail.smtp.username=
+spring.mail.properties.mail.smtp.password=

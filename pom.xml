@@ -27,6 +27,7 @@
 		<slf4j-log4j12.version>1.7.30</slf4j-log4j12.version>
 		<jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
 
+		<spring-boot-freemarker-email.version>0.6.3</spring-boot-freemarker-email.version>
 	</properties>
 
 	<dependencies>
@@ -86,6 +87,11 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>${guava.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>it.ozimov</groupId>
+			<artifactId>spring-boot-freemarker-email</artifactId>
+			<version>${spring-boot-freemarker-email.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
