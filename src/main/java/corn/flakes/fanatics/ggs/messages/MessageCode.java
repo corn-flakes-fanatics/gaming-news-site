@@ -12,9 +12,12 @@ public enum MessageCode {
     FIELD_ALREADY_TAKEN,
     FIELD_EMPTY,
     PASSWORD_NOT_STRONG_ENOUGH,
+    PASSWORD_RESET,
     REGISTERED,
     SERVER_SIDE_ERROR_OCCURRED,
     OBJECT_REQUEST_EMPTY,
+    TOKEN_EXPIRED,
+    TOKEN_NOT_FOUND,
     VALIDATION_DID_NOT_PASS;
     
     private static MessageSource messageSource;

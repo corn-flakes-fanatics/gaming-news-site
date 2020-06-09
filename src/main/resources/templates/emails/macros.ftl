@@ -1,6 +1,6 @@
 <#macro signature>
     <div id="signature">
-        --------------
+        -------------- <br>
         <i>GGS</i>
     </div>
 </#macro>

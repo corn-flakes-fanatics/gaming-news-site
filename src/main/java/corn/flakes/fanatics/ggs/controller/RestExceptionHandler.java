@@ -2,6 +2,7 @@ package corn.flakes.fanatics.ggs.controller;
 
 import corn.flakes.fanatics.ggs.messages.MessageCode;
 import corn.flakes.fanatics.ggs.messages.ResponseMessage;
+import corn.flakes.fanatics.ggs.model.TokenNotFoundException;
 import corn.flakes.fanatics.ggs.model.UserNotFoundException;
 import corn.flakes.fanatics.ggs.validator.ValidationException;
 import it.ozimov.springboot.mail.service.exception.CannotSendEmailException;
@@ -26,8 +27,8 @@ public class RestExceptionHandler {
                 .body(new ResponseMessage<>(MessageCode.VALIDATION_DID_NOT_PASS.getMessage(), e.getMessages()));
     }
     
-    @ExceptionHandler(value = UserNotFoundException.class)
-    public ResponseEntity<ResponseMessage<?>> handleUserNotFoundException(UserNotFoundException e) {
+    @ExceptionHandler(value = { UserNotFoundException.class, TokenNotFoundException.class })
+    public ResponseEntity<ResponseMessage<?>> handleUserNotFoundException(Exception e) {
         logException(e);
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(new ResponseMessage<>(e.getMessage()));
