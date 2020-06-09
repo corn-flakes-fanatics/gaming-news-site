@@ -4,7 +4,7 @@
 <body>
 <p>
     Reset password for this account has been requested.
-    Use hyperlink below to reset your password, otherwise ignore this email.
+    Use hyperlink below to reset your password, otherwise ignore this email. <br>
     <a href="${macros.server}${token}">Reset password</a>
 </p>
 <@macros.signature />
