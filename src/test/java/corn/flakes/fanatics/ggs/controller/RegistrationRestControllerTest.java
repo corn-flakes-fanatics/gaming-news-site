@@ -9,10 +9,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 
-import static corn.flakes.fanatics.ggs.service.RegistrationService.REGISTER_MAPPING;
+import static corn.flakes.fanatics.ggs.service.RegistrationService.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.hamcrest.CoreMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -63,6 +65,48 @@ public class RegistrationRestControllerTest extends RestControllerAbstractTest {
                 .andExpect(redirectedUrlPattern("**/register/{id}"))
                 .andExpect(forwardedUrl(null))
                 .andExpect(status().isCreated());
+    }
+    
+    @Test
+    public void shouldReturnTrueWithStats200IfLoginAlreadyExists() throws Exception {
+        final String mapping = CHECK_LOGIN_MAPPING.replace("{login}", "login");
+        when(registrationService.loginExists(anyString())).thenReturn(true);
+        
+        mockMvc.perform(get(mapping))
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.message", is("true")))
+                .andExpect(jsonPath("$.object", is(nullValue())))
+                .andExpect(redirectedUrl(null))
+                .andExpect(forwardedUrl(null))
+                .andExpect(status().isOk());
+    }
+    
+    @Test
+    public void shouldReturnFalseWithStats200IfUsernameDoesNotExist() throws Exception {
+        final String mapping = CHECK_USERNAME_MAPPING.replace("{username}", "username");
+        when(registrationService.usernameExists(anyString())).thenReturn(false);
+        
+        mockMvc.perform(get(mapping))
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.message", is("false")))
+                .andExpect(jsonPath("$.object", is(nullValue())))
+                .andExpect(redirectedUrl(null))
+                .andExpect(forwardedUrl(null))
+                .andExpect(status().isOk());
+    }
+    
+    @Test
+    public void shouldReturnFalseWithStats200IfEmailDoesNotExist() throws Exception {
+        final String mapping = CHECK_EMAIL_MAPPING.replace("{email}", "email");
+        when(registrationService.emailExists(anyString())).thenReturn(false);
+        
+        mockMvc.perform(get(mapping))
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.message", is("false")))
+                .andExpect(jsonPath("$.object", is(nullValue())))
+                .andExpect(redirectedUrl(null))
+                .andExpect(forwardedUrl(null))
+                .andExpect(status().isOk());
     }
     
 }

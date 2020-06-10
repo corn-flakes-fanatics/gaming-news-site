@@ -8,6 +8,12 @@ public interface RegistrationService {
     
     String REGISTER_MAPPING = "/register";
     
+    String CHECK_LOGIN_MAPPING = REGISTER_MAPPING + "/login/{login}";
+    
+    String CHECK_USERNAME_MAPPING = REGISTER_MAPPING + "/username/{username}";
+    
+    String CHECK_EMAIL_MAPPING = REGISTER_MAPPING + "/email/{email}";
+    
     /**
      * Register new user with hashed password
      *
@@ -17,5 +23,29 @@ public interface RegistrationService {
      * @see corn.flakes.fanatics.ggs.messages.ValidationMessageContainer
      */
     UserModel registerUser(RegistrationDTO registrationDTO) throws ValidationException;
+    
+    /**
+     * Check if user with provided login already exists
+     *
+     * @param login login
+     * @return true if user exists, otherwise false
+     */
+    boolean loginExists(String login);
+    
+    /**
+     * Check if user with provided username already exists
+     *
+     * @param username username
+     * @return true if user exists, otherwise false
+     */
+    boolean usernameExists(String username);
+    
+    /**
+     * Check if user with provided email already exists
+     *
+     * @param email email
+     * @return true if user exists, otherwise false
+     */
+    boolean emailExists(String email);
     
 }

@@ -34,6 +34,21 @@ public class RegistrationServiceImpl implements RegistrationService {
         return userRepository.save(createUserWithHashedPasswordAndRole(registrationDTO));
     }
     
+    @Override
+    public boolean loginExists(String login) {
+        return userRepository.findByLogin(login) != null;
+    }
+    
+    @Override
+    public boolean usernameExists(String username) {
+        return userRepository.findByUsername(username) != null;
+    }
+    
+    @Override
+    public boolean emailExists(String email) {
+        return userRepository.findByEmail(email) != null;
+    }
+    
     private UserModel createUserWithHashedPasswordAndRole(RegistrationDTO registrationDTO) {
         final RoleModel roleModel = roleRepository.findByValue(Role.ROLE_USER);
         UserModel userModel = registrationDTO.toModel();
