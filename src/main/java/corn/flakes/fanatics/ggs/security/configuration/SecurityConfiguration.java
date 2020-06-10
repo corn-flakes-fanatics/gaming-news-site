@@ -1,5 +1,6 @@
 package corn.flakes.fanatics.ggs.security.configuration;
 
+import com.google.common.collect.ImmutableList;
 import corn.flakes.fanatics.ggs.security.filter.JsonAuthenticationFilter;
 import corn.flakes.fanatics.ggs.security.handler.AuthenticationEntryPointHandler;
 import corn.flakes.fanatics.ggs.security.handler.AuthenticationFailureHandler;
@@ -16,6 +17,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -51,6 +55,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(mongoUserDetailsService);
     }
     
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowedOrigins(ImmutableList.of("*"));
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.setAllowedMethods(ImmutableList.of("GET", "POST", "PUT", "PATCH",
+                "DELETE", "HEAD", "OPTIONS"));
+        corsConfiguration.setAllowedHeaders(ImmutableList.of("*"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", corsConfiguration);
+        return source;
+    }
+    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf()
@@ -72,7 +89,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .logoutSuccessHandler(successLogoutHandler)
                 .and()
-                .oauth2Login();
+                .oauth2Login()
+                .and()
+                .cors();
     }
     
 }
